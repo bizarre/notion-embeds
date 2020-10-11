@@ -15,7 +15,7 @@ const Chart = ({ data }) => {
   let months = []
   for (var i = 0; i < dates.length; i++) {
     var date = dates[i];
-    months.push(<text x={`${((width/11.6) * i) - 5}`} y="-7" class="month" style={{fontSize: "0.66em"}}>{date.toLocaleString('default', { month: 'short' })}</text>)
+    months.push(<text x={`${((width/11.6) * i) - 5}`} y="-7" style={{fontSize: "0.66em"}}>{date.toLocaleString('default', { month: 'short' })}</text>)
   }
   
   var mappedContributions = {};
@@ -52,8 +52,8 @@ const Chart = ({ data }) => {
   }
 
   return (
-  <svg width="800" height="112" class="js-calendar-graph-svg" style={{background: 'transparent'}}>
-  <g transform="translate(10, 20)" data-hydro-click="{&quot;event_type&quot;:&quot;user_profile.click&quot;,&quot;payload&quot;:{&quot;profile_user_id&quot;:13293321,&quot;target&quot;:&quot;CONTRIBUTION_CALENDAR_SQUARE&quot;,&quot;user_id&quot;:13293321,&quot;originating_url&quot;:&quot;https://github.com/bizarre&quot;}}" data-hydro-click-hmac="68248ef36414f05c7d35701040f827753d63eb86d31231c4da27c7556f9d290f">
+  <svg width="800" height="112" style={{background: 'transparent'}}>
+  <g transform="translate(10, 20)">
       <g transform="translate(55, 0)">
         {[...Array(52)].map((_, i) => renderWeek(i))}
       </g>
