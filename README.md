@@ -9,3 +9,6 @@ This is a simple project that lets you embed a GitHub user's contribution chart 
 4. Bask in its glory!
 
 ![glory](https://i.imgur.com/aU95o4N.png)
+
+#### Credit
+@sallar's [github-contributions-chart](https://github.com/sallar/github-contributions-chart) is used to fetch GitHub user contributions. <3
