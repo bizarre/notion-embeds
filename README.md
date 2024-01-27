@@ -6,7 +6,7 @@ currently only contains a github chart embed
 
 ## usage:
 1. create a new Embed block in your Notion doc.
-2. set embed url to `https://notion-github-embed.vercel.app/chart/{username}`` replacing `{username} `with your GitHub username.
+2. set embed url to `https://notion-github-embed.vercel.app/chart/{username}` replacing `{username} `with your GitHub username.
 3. adjust size of embed so it fits document better
 
 ## new in v2
