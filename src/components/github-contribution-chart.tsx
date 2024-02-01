@@ -100,7 +100,7 @@ export default async function GithubContributionChart({
                   key={i}
                   colSpan={colspan}
                 >
-                  {colspan &&
+                  {!!colspan &&
                     (() => {
                       // get month of relative date using `index` and `i`
                       const relativeDate = new Date(
