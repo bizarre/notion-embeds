@@ -64,56 +64,57 @@ export default async function GithubContributionChart({
         <thead>
           <tr className='relative h-2'>
             <th colSpan={DAY_COL_SPAN} id='days'></th>
-            {Array.from({ length: MONTHS_IN_YEAR + 1 }, (_, i) => (
-              <th
-                className='text-left text-xs font-medium opacity-50'
-                key={i}
-                colSpan={(() => {
-                  // we want to walk backwards 13 months, starting at the current month (i.e: Jan 2024, Dec 2023, Nov 2023, etc.)
-                  const relativeDate = new Date(
-                    date.getFullYear(),
-                    date.getMonth() - i,
-                    1,
-                  )
+            {Array.from({ length: MONTHS_IN_YEAR + 1 }, (_, i) => {
+              // we want to walk backwards 13 months, starting at the current month (i.e: Jan 2024, Dec 2023, Nov 2023, etc.)
+              const relativeDate = new Date(
+                date.getFullYear(),
+                date.getMonth() - i,
+                1,
+              )
 
-                  const relativeDiff =
-                    new Date(
-                      relativeDate.getFullYear(),
-                      relativeDate.getMonth() + 1,
-                      0,
-                    ).getDate() + relativeDate.getDay()
+              const relativeDiff =
+                new Date(
+                  relativeDate.getFullYear(),
+                  relativeDate.getMonth() + 1,
+                  0,
+                ).getDate() + relativeDate.getDay()
 
-                  // colspan by default is the number of weeks in the month of the relative date
-                  let colspan = Math.floor(relativeDiff / DAYS_IN_WEEK)
+              // colspan by default is the number of weeks in the month of the relative date
+              let colspan = Math.floor(relativeDiff / DAYS_IN_WEEK)
 
-                  if (i === 0) {
-                    // if we're at the current month, we need to offset the colspan by the number of days in the current week
-                    colspan = Math.floor(date.getDate() / DAYS_IN_WEEK)
-                  }
+              if (i === 0) {
+                // if we're at the current month, we need to offset the colspan by the number of days in the current week
+                colspan = Math.floor(date.getDate() / DAYS_IN_WEEK)
+              }
 
-                  if (i === MONTHS_IN_YEAR) {
-                    // if we're at the last month, the colspan should be whatever is left remaining after
-                    // the cols taken by the first month + one extra col
-                    colspan =
-                      colspan - Math.floor(date.getDate() / DAYS_IN_WEEK) + 1
-                  }
+              if (i === MONTHS_IN_YEAR) {
+                // if we're at the last month, the colspan should be whatever is left remaining after
+                // the cols taken by the first month + one extra col
+                colspan =
+                  colspan - Math.floor(date.getDate() / DAYS_IN_WEEK) + 1
+              }
 
-                  return colspan
-                })()}
-              >
-                {(() => {
-                  // get month of relative date using `index` and `i`
-                  const relativeDate = new Date(
-                    date.getFullYear(),
-                    date.getMonth() - i,
-                  )
+              return (
+                <th
+                  className='text-left text-xs font-medium opacity-50'
+                  key={i}
+                  colSpan={colspan}
+                >
+                  {colspan &&
+                    (() => {
+                      // get month of relative date using `index` and `i`
+                      const relativeDate = new Date(
+                        date.getFullYear(),
+                        date.getMonth() - i,
+                      )
 
-                  return relativeDate.toLocaleString('default', {
-                    month: 'short',
-                  })
-                })()}
-              </th>
-            )).reverse()}
+                      return relativeDate.toLocaleString('default', {
+                        month: 'short',
+                      })
+                    })()}
+                </th>
+              )
+            }).reverse()}
           </tr>
         </thead>
         <tbody>
