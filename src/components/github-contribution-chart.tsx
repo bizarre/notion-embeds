@@ -16,6 +16,8 @@ const COLOR_REPLACEMENT_MAP_DARK = {
   '#216e39': 'dark:bg-[#39d353]', // intensity 4 bg-[#216e39] -> dark:bg-[#39d353]
 }
 
+const DAYS = ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat']
+
 export default async function GithubContributionChart({
   username,
 }: TGithubContributionChartProps) {
@@ -119,18 +121,7 @@ export default async function GithubContributionChart({
             <tr key={row} className='overflow-hidden'>
               <td colSpan={DAY_COL_SPAN}>
                 <div className='text-xs font-medium opacity-50 text-right pr-1'>
-                  {row % 2 === 1 &&
-                    (() => {
-                      const relativeDate = new Date(
-                        date.getFullYear(),
-                        date.getMonth(),
-                        row,
-                      )
-
-                      return relativeDate.toLocaleString('default', {
-                        weekday: 'short',
-                      })
-                    })()}
+                  {row % 2 === 1 && DAYS[row]}
                 </div>
               </td>
 
