@@ -122,10 +122,9 @@ export default async function GithubContributionChart({
               </td>
 
               {Array.from({ length: WEEKS }, (_, column) => {
-                const contribution =
-                  contributions[
-                    index + (DAYS_IN_WEEK - row + column * DAYS_IN_WEEK)
-                  ]
+                const contributionIndex =
+                  index + (DAYS_IN_WEEK - row + column * DAYS_IN_WEEK)
+                const contribution = contributions[contributionIndex]
 
                 return (
                   <td
@@ -133,10 +132,12 @@ export default async function GithubContributionChart({
                     key={column}
                     className='max-h-[1px] embed-xl:p-[1.5px] embed-lg:p-[1.5px] embed-md:p-[1px] embed-sm:p-[0.25px]'
                   >
-                    <div
-                      data-date={contribution?.date}
-                      className={`border border-gray-500/20 dark:border-gray-300/10 box-border aspect-square embed-md:rounded-[1.5px] embed-xl:rounded-sm min-h-[2px] min-w[2px] bg-[${contribution.color}] ${COLOR_REPLACEMENT_MAP_DARK[contribution.color]}`}
-                    ></div>
+                    {contributionIndex >= currentDateIndex && (
+                      <div
+                        data-date={contribution?.date}
+                        className={`border border-gray-500/20 dark:border-gray-300/10 box-border aspect-square embed-md:rounded-[1.5px] embed-xl:rounded-sm min-h-[2px] min-w[2px] bg-[${contribution.color}] ${COLOR_REPLACEMENT_MAP_DARK[contribution.color]}`}
+                      ></div>
+                    )}
                   </td>
                 )
               }).reverse()}
