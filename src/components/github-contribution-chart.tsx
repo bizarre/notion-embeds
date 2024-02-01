@@ -101,17 +101,12 @@ export default async function GithubContributionChart({
                   colSpan={colspan}
                 >
                   {!!colspan &&
-                    (() => {
-                      // get month of relative date using `index` and `i`
-                      const relativeDate = new Date(
-                        date.getFullYear(),
-                        date.getMonth() - i,
-                      )
-
-                      return relativeDate.toLocaleString('default', {
-                        month: 'short',
-                      })
-                    })()}
+                    new Date(
+                      date.getFullYear(),
+                      date.getMonth() - i,
+                    ).toLocaleString('default', {
+                      month: 'short',
+                    })}
                 </th>
               )
             }).reverse()}
